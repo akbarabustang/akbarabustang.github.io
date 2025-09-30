@@ -1,6 +1,99 @@
-Akbar Abustang
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio | Software Engineer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+    .code-block {
+      background: #161b22;
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: #58a6ff;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
 
+  <!-- Hero Section -->
+  <section class="flex-1 flex flex-col justify-center items-center text-center p-6">
+    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Hi, I'm <span class="text-blue-400">Akbar</span></h1>
+    <p class="text-xl md:text-2xl text-gray-400 mb-6">Software Engineer | Problem Solver | Tech Enthusiast</p>
+    <div class="code-block text-left max-w-xl w-full">
+      <pre><code>
+const me = {
+  name: "Akbar Abustang",
+  role: "Software Engineer",
+  skills: ["JavaScript", "Kotlin", "Laravel", "Vue.js", "NestJS"],
+  location: "Singapore"
+}
+      </code></pre>
+    </div>
+  </section>
 
-<script>
-  console.log('connected');
-</script>
+  <!-- About Section -->
+  <section class="p-8 md:p-16 bg-[#161b22]">
+    <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
+    <p class="text-gray-300 leading-relaxed">
+      Saya seorang Software Engineer dengan pengalaman membangun aplikasi web modern, scalable, 
+      dan user-friendly. Fokus saya adalah menyelesaikan masalah melalui teknologi, 
+      menulis kode yang bersih, serta terus belajar untuk mengikuti perkembangan terbaru.
+    </p>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="p-8 md:p-16">
+    <h2 class="text-3xl font-bold text-white mb-6">Projects</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="code-block hover:ring-2 hover:ring-blue-400 transition">
+        <h3 class="text-lg font-semibold text-blue-400">Merchant Console</h3>
+        <p class="text-gray-400">A dashboard to manage orders, refunds, and analytics for merchants.</p>
+      </div>
+      <div class="code-block hover:ring-2 hover:ring-blue-400 transition">
+        <h3 class="text-lg font-semibold text-blue-400">SmartKiosk API</h3>
+        <p class="text-gray-400">API for kiosk system integration, supporting Adyen AFP and advanced logging.</p>
+      </div>
+      <div class="code-block hover:ring-2 hover:ring-blue-400 transition">
+        <h3 class="text-lg font-semibold text-blue-400">Realtime QDisplay</h3>
+        <p class="text-gray-400">Queue display system with WebSocket and auto-refresh features.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="p-8 md:p-16 bg-[#161b22] text-center">
+    <h2 class="text-3xl font-bold text-white mb-6">Contact Me</h2>
+    <p class="text-gray-300 mb-4">Tertarik untuk bekerja sama? Jangan ragu untuk menghubungi saya 👇</p>
+    <div class="flex justify-center space-x-6">
+      <a href="mailto:youremail@example.com" class="text-blue-400 hover:underline">Email</a>
+      <a href="https://github.com/username" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
+      <a href="https://linkedin.com/in/username" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="p-6 text-center text-gray-500 text-sm">
+    © <span id="year"></span> Akbar Abustang. Built with ❤️ using GitHub Pages.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
