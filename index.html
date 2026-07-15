@@ -1,473 +1,868 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akbar Abustang - Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .code-line {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        .terminal-cursor::after {
-            content: '▊';
-            animation: blink 1s step-end infinite;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        
-        .tech-badge {
-            transition: all 0.2s ease;
-        }
-        
-        .tech-badge:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akbar Abustang - Software Engineer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2a;
+      --text: #e4e4ed;
+      --muted: #6b6b80;
+      --accent: #6c5ce7;
+      --accent-glow: rgba(108,92,231,.25);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      background: rgba(10,10,15,.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+    .logo span { color: var(--accent); }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      margin-left: 2rem;
+      transition: color .25s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* sections */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    /* hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    #hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .4rem 1rem .4rem .4rem;
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #2ecc71;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity: 1 }
+      50%{ opacity: .4 }
+    }
+    #hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+    #hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.8rem;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+
+    /* floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .4;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: var(--accent);
+      top: -100px; right: -100px;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: #a29bfe;
+      bottom: -50px; left: -80px;
+    }
+
+    /* section headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .section-header p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+    }
+    .skill-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem .75rem;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 500;
+      transition: all .25s;
+    }
+    .skill-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    .skill-chip .icon { font-size: 1.5rem; display: block; margin-bottom: .4rem; }
+
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), #a29bfe);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+    }
+    .project-card .tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+    .project-card p {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .project-card .tech {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .project-card .tech span {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .25rem .65rem;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* contact */
+    #contact {
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    #contact h2 { font-size: 2.5rem; }
+    #contact p { color: var(--muted); margin: 1rem 0 2rem; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all .25s;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: .85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: all .25s;
+    }
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-card .label {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+
+    /* about */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+    .about-highlight {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .about-highlight .icon {
+      font-size: 1.5rem;
+      margin-bottom: .25rem;
+    }
+    .about-highlight .val {
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .about-highlight .lbl {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      filter: blur(40px);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .service-card:hover::after { opacity: 1; }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .service-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+    .service-card p {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: .35rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-item .date {
+      font-size: .8rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: block;
+      margin-bottom: .25rem;
+    }
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: .2rem;
+    }
+    .timeline-item .company {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+    .timeline-item p {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .timeline-item ul {
+      list-style: none;
+      padding: 0;
+      margin-top: .5rem;
+    }
+    .timeline-item ul li {
+      font-size: .85rem;
+      color: var(--muted);
+      padding: .15rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .timeline-item ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      counter-reset: step;
+    }
+    .process-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transition: all .3s;
+    }
+    .process-step:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .process-step .step-num {
+      counter-increment: step;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 auto 1rem;
+    }
+    .process-step h3 {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+    }
+    .process-step p {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* tech stack grid */
+    .techstack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .techstack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all .3s;
+    }
+    .techstack-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .techstack-card .icon {
+      font-size: 1.75rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+    .techstack-card h3 {
+      font-size: 1rem;
+      margin-bottom: .75rem;
+    }
+    .techstack-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .techstack-card .tags span {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .25rem .65rem;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-highlights { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav a { margin-left: 1rem; font-size: .8rem; }
+      nav a:not(.contact-link) { display: none; }
+      #hero h1 { font-size: 2.2rem; }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-card .number { font-size: 2rem; }
+      .techstack-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-mono">
-    
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold">
-                    <span class="text-purple-400">&lt;</span>
-                    <span class="gradient-text">Developer</span>
-                    <span class="text-purple-400">/&gt;</span>
-                </div>
-                <div id="menu" class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-purple-400 transition">Home</a>
-                    <a href="#about" class="hover:text-purple-400 transition">About</a>
-                    <a href="#experience" class="hover:text-purple-400 transition">Experience</a>
-                    <a href="#skills" class="hover:text-purple-400 transition">Skills</a>
-                    <a href="#contact" class="hover:text-purple-400 transition">Contact</a>
-                </div>
-                <button id="menuToggle" class="md:hidden text-purple-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-                <div class="flex flex-col space-y-4 px-6 py-4">
-                    <a href="#home" class="hover:text-purple-400 transition">Home</a>
-                    <a href="#about" class="hover:text-purple-400 transition">About</a>
-                    <a href="#experience" class="hover:text-purple-400 transition">Experience</a>
-                    <a href="#skills" class="hover:text-purple-400 transition">Skills</a>
-                    <a href="#contact" class="hover:text-purple-400 transition">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="mb-8 animate-fade-in">
-                <span class="text-purple-400 text-sm md:text-base">// Hello World</span>
-            </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-                <span class="text-gray-400">const</span> 
-                <span class="text-purple-400"> developer</span> 
-                <span class="text-gray-400">= {</span>
-            </h1>
-            <div class="text-2xl md:text-4xl lg:text-5xl font-bold mb-8 pl-8 text-left max-w-3xl mx-auto">
-                <div class="code-line" style="animation-delay: 0.2s">
-                    <span class="text-gray-400">  name:</span> 
-                    <span class="text-green-400">"Akbar Abustang"</span>
-                    <span class="text-gray-400">,</span>
-                </div>
-                <div class="code-line" style="animation-delay: 0.4s">
-                    <span class="text-gray-400">  role:</span> 
-                    <span class="text-green-400">"Senior Software Engineer"</span>
-                </div>
-            </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 animate-fade-in">
-                <span class="text-gray-400">}</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.6s">
-                Building elegant digital solutions with clean and efficient code
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center animate-fade-in" style="animation-delay: 0.8s">
-                <a href="#experience" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition transform hover:scale-105">
-                    View Experience
-                </a>
-                <a href="#contact" class="px-8 py-3 border-2 border-purple-400 rounded-lg font-semibold hover:bg-purple-400/10 transition">
-                    Contact Me
-                </a>
-            </div>
-        </div>
-    </section>
+<nav>
+  <div class="inner">
+    <div class="logo">Akbar<span>.dev</span></div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#stats">Stats</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="contact-link">Contact</a>
+    </div>
+  </div>
+</nav>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-6 bg-gray-800/50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                <span class="text-purple-400">//</span> About Me
-            </h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700">
-                    <div class="text-sm text-gray-400 mb-4 font-mono">
-                        <span class="text-blue-400">class</span> <span class="text-yellow-400">Developer</span> {
-                    </div>
-                    <div class="text-sm space-y-2 text-gray-300 font-mono">
-                        <div>&nbsp;&nbsp;constructor() {</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.passion = <span class="text-green-400">"coding"</span>;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.experience = <span class="text-green-400">"7+ years"</span>;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.education = <span class="text-green-400">"S.Kom"</span>;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.gpa = <span class="text-green-400">3.90</span>;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.location = <span class="text-green-400">"Depok, Indonesia"</span>;</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;this.focus = [</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"Full Stack Development"</span>,</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"RESTful APIs"</span>,</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"System Architecture"</span></div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;];</div>
-                        <div>&nbsp;&nbsp;}</div>
-                        <div>}</div>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        I'm a passionate Software Engineer with over 7 years of experience in full-stack development. Currently serving as Senior Software Engineer at Tabsquare PTE. LTD., I specialize in building scalable web applications and RESTful APIs using modern technologies.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
-                        I believe technology should solve real-world problems, and I enjoy working in teams to create solutions that make a positive impact. My expertise spans from backend systems with Java Spring Boot and Node.js to frontend development with Vue.js and React.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        Beyond coding, I'm passionate about teaching and sharing knowledge about web programming with students and communities, including participating in social activities like "Kelas Inspirasi" to inspire children to pursue their dreams.
-                    </p>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="px-4 py-3 bg-purple-500/20 text-purple-400 rounded-lg text-center">
-                            <div class="text-2xl font-bold">🏆</div>
-                            <div class="text-sm mt-1">Best Student 2017</div>
-                        </div>
-                        <div class="px-4 py-3 bg-purple-500/20 text-purple-400 rounded-lg text-center">
-                            <div class="text-2xl font-bold">📱</div>
-                            <div class="text-sm mt-1">Indonesia Next</div>
-                        </div>
-                        <div class="px-4 py-3 bg-purple-500/20 text-purple-400 rounded-lg text-center">
-                            <div class="text-2xl font-bold">👔</div>
-                            <div class="text-sm mt-1">President Student</div>
-                        </div>
-                        <div class="px-4 py-3 bg-purple-500/20 text-purple-400 rounded-lg text-center">
-                            <div class="text-2xl font-bold">⭐</div>
-                            <div class="text-sm mt-1">Outstanding 2017</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="badge"><span class="dot"></span> Senior Software Engineer</div>
+  <h1>
+    Hi, I'm<br>
+    <span class="gradient">Akbar Abustang</span>
+  </h1>
+  <p>Full-stack developer with 7+ years of experience building scalable web applications, RESTful APIs, and elegant digital solutions.</p>
+  <div class="btn-group">
+    <a href="#experience" class="btn btn-primary">
+      View Experience
+    </a>
+    <a href="#contact" class="btn btn-outline">Contact Me</a>
+  </div>
+</section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                <span class="text-purple-400">//</span> Experience
-            </h2>
-            <div class="space-y-8">
-                <!-- Experience 1 -->
-                <div class="bg-gray-800/50 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-purple-400">Senior Software Engineer</h3>
-                            <p class="text-xl text-gray-300 mt-1">Tabsquare PTE. LTD.</p>
-                        </div>
-                        <span class="text-gray-400 mt-2 md:mt-0">2020 - Present</span>
-                    </div>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>• Built Order Service RESTful API using Java Spring Boot</li>
-                        <li>• Implemented CI/CD pipelines with Jenkins for automated deployments</li>
-                        <li>• Developed CRM system and Merchant Console platform</li>
-                        <li>• Integrated third-party services (Grab Express, Lalamove, Advocado)</li>
-                        <li>• API & Database optimization with Redis caching</li>
-                        <li>• Developed SmartKiosk API using NestJS</li>
-                        <li>• Implemented automation testing and bug fixing</li>
-                    </ul>
-                </div>
+<section id="about">
+  <div class="section-header reveal">
+    <h2>About Me</h2>
+    <p>Passionate software engineer dedicated to crafting clean, efficient code.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a Senior Software Engineer at Tabsquare PTE. LTD., where I specialize in building scalable web applications and RESTful APIs using modern technologies like Java Spring Boot, Node.js, and Vue.js.</p>
+      <p>I believe technology should solve real-world problems, and I enjoy working in teams to create solutions that make a positive impact. My expertise spans from backend systems with Java Spring Boot and Node.js to frontend development with Vue.js and React.</p>
+      <p>Beyond coding, I'm passionate about teaching and sharing knowledge about web programming with students and communities, including participating in social activities like "Kelas Inspirasi" to inspire children to pursue their dreams.</p>
+    </div>
+    <div class="about-highlights reveal">
+      <div class="about-highlight">
+        <div class="icon">🎓</div>
+        <div class="val">S.Kom</div>
+        <div class="lbl">Education</div>
+      </div>
+      <div class="about-highlight">
+        <div class="icon">⭐</div>
+        <div class="val">3.90</div>
+        <div class="lbl">GPA</div>
+      </div>
+      <div class="about-highlight">
+        <div class="icon">📍</div>
+        <div class="val">Depok</div>
+        <div class="lbl">Indonesia</div>
+      </div>
+      <div class="about-highlight">
+        <div class="icon">🏆</div>
+        <div class="val">Best Student</div>
+        <div class="lbl">2017</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Experience 2 -->
-                <div class="bg-gray-800/50 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-purple-400">Backend Developer</h3>
-                            <p class="text-xl text-gray-300 mt-1">Giladiskon.com</p>
-                        </div>
-                        <span class="text-gray-400 mt-2 md:mt-0">2019 - 2020</span>
-                    </div>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>• Built RESTful API with business logic, mailing system, and SMS gateway</li>
-                        <li>• Managed AWS and Google Cloud infrastructure</li>
-                        <li>• Implemented CI/CD pipelines for continuous delivery</li>
-                        <li>• Led API migration project</li>
-                        <li>• Database management (MySQL/PostgreSQL) and CMS Admin development</li>
-                        <li>• Bug fixing and system optimization</li>
-                    </ul>
-                </div>
+<section id="stats">
+  <div class="section-header reveal">
+    <h2>By the Numbers</h2>
+    <p>A snapshot of my professional journey.</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="number">7+</div>
+      <div class="label">Years Experience</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="number">3.90</div>
+      <div class="label">GPA (S.Kom)</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="number">4</div>
+      <div class="label">Companies Served</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="number">50+</div>
+      <div class="label">Projects Delivered</div>
+    </div>
+  </div>
+</section>
 
-                <!-- Experience 3 -->
-                <div class="bg-gray-800/50 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-purple-400">Backend Developer</h3>
-                            <p class="text-xl text-gray-300 mt-1">PT. Integrated Synergy System</p>
-                        </div>
-                        <span class="text-gray-400 mt-2 md:mt-0">2018 - 2019</span>
-                    </div>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>• Built web applications using Laravel, Node.js, and Vue.js</li>
-                        <li>• Managed project timelines and deliverables</li>
-                        <li>• Collaborated with cross-functional teams</li>
-                        <li>• Ensured on-time project delivery</li>
-                    </ul>
-                </div>
+<section id="experience">
+  <div class="section-header reveal">
+    <h2>Experience</h2>
+    <p>Places I've worked and things I've built along the way.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <span class="date">2020 — Present</span>
+      <h3>Senior Software Engineer</h3>
+      <div class="company">Tabsquare PTE. LTD.</div>
+      <ul>
+        <li>Built Order Service RESTful API using Java Spring Boot</li>
+        <li>Implemented CI/CD pipelines with Jenkins for automated deployments</li>
+        <li>Developed CRM system and Merchant Console platform</li>
+        <li>Integrated third-party services (Grab Express, Lalamove, Advocado)</li>
+        <li>API & Database optimization with Redis caching</li>
+        <li>Developed SmartKiosk API using NestJS</li>
+        <li>Implemented automation testing and bug fixing</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <span class="date">2019 — 2020</span>
+      <h3>Backend Developer</h3>
+      <div class="company">Giladiskon.com</div>
+      <ul>
+        <li>Built RESTful API with business logic, mailing system, and SMS gateway</li>
+        <li>Managed AWS and Google Cloud infrastructure</li>
+        <li>Implemented CI/CD pipelines for continuous delivery</li>
+        <li>Led API migration project</li>
+        <li>Database management (MySQL/PostgreSQL) and CMS Admin development</li>
+        <li>Bug fixing and system optimization</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <span class="date">2018 — 2019</span>
+      <h3>Backend Developer</h3>
+      <div class="company">PT. Integrated Synergy System</div>
+      <ul>
+        <li>Built web applications using Laravel, Node.js, and Vue.js</li>
+        <li>Managed project timelines and deliverables</li>
+        <li>Collaborated with cross-functional teams</li>
+        <li>Ensured on-time project delivery</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <span class="date">2015 — 2017</span>
+      <h3>Full-Stack Web Developer & Project Manager</h3>
+      <div class="company">CV. Media Sakti</div>
+      <ul>
+        <li>Responsible for end-to-end web application development</li>
+        <li>Led team as project manager</li>
+        <li>Set project workflows, schedules, and deliverables</li>
+        <li>Coordinated team activities and resources</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-                <!-- Experience 4 -->
-                <div class="bg-gray-800/50 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-purple-400">Full-Stack Web Developer & Project Manager</h3>
-                            <p class="text-xl text-gray-300 mt-1">CV. Media Sakti</p>
-                        </div>
-                        <span class="text-gray-400 mt-2 md:mt-0">2015 - 2017</span>
-                    </div>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>• Responsible for end-to-end web application development</li>
-                        <li>• Led team as project manager</li>
-                        <li>• Set project workflows, schedules, and deliverables</li>
-                        <li>• Coordinated team activities and resources</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="skills">
+  <div class="section-header reveal">
+    <h2>Skills & Tools</h2>
+    <p>Technologies I use to bring ideas to life.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-chip reveal"><span class="icon">⚛</span>React</div>
+    <div class="skill-chip reveal"><span class="icon">🟢</span>Vue.js</div>
+    <div class="skill-chip reveal"><span class="icon">🔷</span>TypeScript</div>
+    <div class="skill-chip reveal"><span class="icon">🟨</span>JavaScript</div>
+    <div class="skill-chip reveal"><span class="icon">☕</span>Java</div>
+    <div class="skill-chip reveal"><span class="icon">🍃</span>Spring Boot</div>
+    <div class="skill-chip reveal"><span class="icon">🟩</span>Node.js</div>
+    <div class="skill-chip reveal"><span class="icon">🧩</span>NestJS</div>
+    <div class="skill-chip reveal"><span class="icon">🐘</span>PHP</div>
+    <div class="skill-chip reveal"><span class="icon">🎯</span>Laravel</div>
+    <div class="skill-chip reveal"><span class="icon">🗄</span>MySQL</div>
+    <div class="skill-chip reveal"><span class="icon">🐘</span>PostgreSQL</div>
+    <div class="skill-chip reveal"><span class="icon">🍃</span>MongoDB</div>
+    <div class="skill-chip reveal"><span class="icon">⚡</span>Redis</div>
+    <div class="skill-chip reveal"><span class="icon">🐳</span>Docker</div>
+    <div class="skill-chip reveal"><span class="icon">🔄</span>Jenkins</div>
+    <div class="skill-chip reveal"><span class="icon">☁</span>AWS</div>
+    <div class="skill-chip reveal"><span class="icon">☁</span>GCP</div>
+  </div>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-gray-800/50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
-                <span class="text-purple-400">//</span> Tech Stack
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Frontend -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">🎨</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Frontend</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">React</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Vue.js</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">TypeScript</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">JavaScript</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">HTML/CSS</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Bootstrap</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">jQuery</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Ajax</span>
-                    </div>
-                </div>
+<section id="techstack">
+  <div class="section-header reveal">
+    <h2>Tech Stack</h2>
+    <p>Categories of technologies I work with daily.</p>
+  </div>
+  <div class="techstack-grid">
+    <div class="techstack-card reveal">
+      <span class="icon">🎨</span>
+      <h3>Frontend</h3>
+      <div class="tags">
+        <span>React</span><span>Vue.js</span><span>TypeScript</span><span>JavaScript</span><span>HTML/CSS</span><span>Bootstrap</span><span>jQuery</span><span>Ajax</span>
+      </div>
+    </div>
+    <div class="techstack-card reveal">
+      <span class="icon">⚙️</span>
+      <h3>Backend</h3>
+      <div class="tags">
+        <span>Java Spring Boot</span><span>Node.js</span><span>NestJS</span><span>PHP</span><span>Laravel</span><span>CodeIgniter</span><span>Kotlin</span>
+      </div>
+    </div>
+    <div class="techstack-card reveal">
+      <span class="icon">🗄️</span>
+      <h3>Database</h3>
+      <div class="tags">
+        <span>MySQL</span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Firebase</span>
+      </div>
+    </div>
+    <div class="techstack-card reveal">
+      <span class="icon">🛠️</span>
+      <h3>DevOps & Tools</h3>
+      <div class="tags">
+        <span>Git</span><span>Docker</span><span>Jenkins</span><span>CI/CD</span><span>AWS</span><span>Google Cloud</span>
+      </div>
+    </div>
+    <div class="techstack-card reveal">
+      <span class="icon">🔌</span>
+      <h3>API & Integration</h3>
+      <div class="tags">
+        <span>RESTful API</span><span>Third Party APIs</span><span>Microservices</span><span>API Optimization</span>
+      </div>
+    </div>
+    <div class="techstack-card reveal">
+      <span class="icon">📋</span>
+      <h3>Methodologies</h3>
+      <div class="tags">
+        <span>Agile</span><span>Automation Testing</span><span>System Design</span><span>Team Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Backend -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">⚙️</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Backend</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Java Spring Boot</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Node.js</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">NestJS</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">PHP</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Laravel</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">CodeIgniter</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Kotlin</span>
-                    </div>
-                </div>
+<section id="contact">
+  <div class="reveal">
+    <h2>Let's work together</h2>
+    <p>Have an exciting project? Let's discuss!</p>
+    <a href="mailto:akbar_abustang@ymail.com" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      akbar_abustang@ymail.com
+    </a>
+    <div style="margin-top:2rem">
+      <div class="social-links">
+        <a href="https://github.com/akbarabustang" target="_blank" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/akbarabustang" target="_blank" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="tel:+6282394315392" aria-label="Phone">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Database -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">🗄️</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Database</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">MySQL</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">PostgreSQL</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">MongoDB</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Redis</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Firebase</span>
-                    </div>
-                </div>
+<footer>© 2025 Akbar Abustang, S.Kom. All rights reserved.</footer>
 
-                <!-- DevOps & Tools -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">🛠️</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">DevOps & Tools</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Git</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Docker</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Jenkins</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">CI/CD</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">AWS</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Google Cloud</span>
-                    </div>
-                </div>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: .1 });
 
-                <!-- API & Integration -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">🔌</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">API & Integration</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">RESTful API</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Third Party APIs</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Microservices</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">API Optimization</span>
-                    </div>
-                </div>
-
-                <!-- Methodologies -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 card-hover">
-                    <div class="text-2xl mb-4">📋</div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Methodologies</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Agile</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Automation Testing</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">System Design</span>
-                        <span class="px-3 py-1 bg-gray-700 rounded-full text-sm tech-badge">Team Leadership</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                <span class="text-purple-400">//</span> Let's Connect
-            </h2>
-            <p class="text-xl text-gray-400 mb-12">
-                Have an exciting project? Let's discuss!
-            </p>
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="mailto:akbar_abustang@ymail.com" class="flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition">
-                    <span class="text-2xl">📧</span>
-                    <span>akbar_abustang@ymail.com</span>
-                </a>
-                <a href="tel:+6282394315392" class="flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition">
-                    <span class="text-2xl">📱</span>
-                    <span>+62-823-9431-5392</span>
-                </a>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="https://github.com/akbarabustang" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition">
-                    <span class="text-2xl">🐙</span>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/akbarabustang" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition">
-                    <span class="text-2xl">💼</span>
-                    <span>LinkedIn</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800/50 border-t border-gray-700 py-8 px-6">
-        <div class="max-w-6xl mx-auto text-center text-gray-400">
-            <p class="mb-2">
-                <span class="text-purple-400">&lt;</span>
-                Made with 
-                <span class="text-red-500">❤️</span>
-                and ☕
-                <span class="text-purple-400">/&gt;</span>
-            </p>
-            <p class="text-sm">© 2025 Akbar Abustang, S.Kom. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.card-hover').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
-    </script>
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
