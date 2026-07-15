@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akbar Abustang - Software Engineer</title>
+  <title>Akbar Abustang - Senior Software Engineer</title>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
     * {
       margin: 0;
@@ -186,16 +187,16 @@
     /* skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 1rem;
     }
     .skill-chip {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1rem .75rem;
+      padding: 1rem .5rem;
       text-align: center;
-      font-size: .85rem;
+      font-size: .8rem;
       font-weight: 500;
       transition: all .25s;
     }
@@ -204,106 +205,58 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 24px var(--accent-glow);
     }
-    .skill-chip .icon { font-size: 1.5rem; display: block; margin-bottom: .4rem; }
-
-    /* projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      transition: all .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--accent), #a29bfe);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .project-card:hover::before { opacity: 1; }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.3);
-    }
-    .project-card .tag {
-      display: inline-block;
-      font-size: .7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .skill-chip .icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+      margin: 0 auto .35rem;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
       color: var(--accent);
-      margin-bottom: .75rem;
     }
-    .project-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: .5rem;
+
+    /* about */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
-    .project-card p {
-      font-size: .9rem;
+    .about-text p {
+      font-size: 1rem;
       color: var(--muted);
       margin-bottom: 1rem;
+      line-height: 1.8;
     }
-    .project-card .tech {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
     }
-    .project-card .tech span {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: .25rem .65rem;
-      font-size: .75rem;
-      color: var(--muted);
-    }
-
-    /* contact */
-    #contact {
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    #contact h2 { font-size: 2.5rem; }
-    #contact p { color: var(--muted); margin: 1rem 0 2rem; }
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px; height: 48px;
-      border-radius: 12px;
+    .about-highlight {
       background: var(--surface);
       border: 1px solid var(--border);
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all .25s;
-    }
-    .social-links a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    footer {
+      border-radius: 10px;
+      padding: 1.25rem;
       text-align: center;
-      padding: 2rem;
+    }
+    .about-highlight .icon {
+      width: 24px;
+      height: 24px;
+      display: block;
+      margin: 0 auto .35rem;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .about-highlight .val {
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .about-highlight .lbl {
+      font-size: .75rem;
       color: var(--muted);
-      font-size: .85rem;
-      border-top: 1px solid var(--border);
     }
 
     /* stats */
@@ -335,89 +288,6 @@
       font-size: .85rem;
       color: var(--muted);
       margin-top: .25rem;
-    }
-
-    /* about */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .about-text p {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.8;
-    }
-    .about-highlights {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .75rem;
-    }
-    .about-highlight {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      text-align: center;
-    }
-    .about-highlight .icon {
-      font-size: 1.5rem;
-      margin-bottom: .25rem;
-    }
-    .about-highlight .val {
-      font-size: .9rem;
-      font-weight: 600;
-    }
-    .about-highlight .lbl {
-      font-size: .75rem;
-      color: var(--muted);
-    }
-
-    /* services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-      transition: all .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: var(--accent-glow);
-      filter: blur(40px);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .service-card:hover::after { opacity: 1; }
-    .service-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    .service-card .icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .service-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: .5rem;
-    }
-    .service-card p {
-      font-size: .85rem;
-      color: var(--muted);
     }
 
     /* timeline */
@@ -467,10 +337,6 @@
       color: var(--muted);
       margin-bottom: .5rem;
     }
-    .timeline-item p {
-      font-size: .85rem;
-      color: var(--muted);
-    }
     .timeline-item ul {
       list-style: none;
       padding: 0;
@@ -488,49 +354,6 @@
       position: absolute;
       left: 0;
       color: var(--accent);
-    }
-
-    /* process */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      counter-reset: step;
-    }
-    .process-step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      transition: all .3s;
-    }
-    .process-step:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    .process-step .step-num {
-      counter-increment: step;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--accent-glow);
-      border: 1px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .9rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin: 0 auto 1rem;
-    }
-    .process-step h3 {
-      font-size: 1rem;
-      margin-bottom: .5rem;
-    }
-    .process-step p {
-      font-size: .85rem;
-      color: var(--muted);
     }
 
     /* tech stack grid */
@@ -551,9 +374,13 @@
       transform: translateY(-4px);
     }
     .techstack-card .icon {
-      font-size: 1.75rem;
-      margin-bottom: .75rem;
+      width: 28px;
+      height: 28px;
       display: block;
+      margin-bottom: .75rem;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
     }
     .techstack-card h3 {
       font-size: 1rem;
@@ -571,6 +398,45 @@
       padding: .25rem .65rem;
       font-size: .75rem;
       color: var(--muted);
+    }
+
+    /* contact */
+    #contact {
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    #contact h2 { font-size: 2.5rem; }
+    #contact p { color: var(--muted); margin: 1rem 0 2rem; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all .25s;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: .85rem;
+      border-top: 1px solid var(--border);
     }
 
     /* scroll-reveal */
@@ -645,22 +511,22 @@
     </div>
     <div class="about-highlights reveal">
       <div class="about-highlight">
-        <div class="icon">🎓</div>
+        <i class="icon" data-lucide="graduation-cap"></i>
         <div class="val">S.Kom</div>
         <div class="lbl">Education</div>
       </div>
       <div class="about-highlight">
-        <div class="icon">⭐</div>
+        <i class="icon" data-lucide="star"></i>
         <div class="val">3.90</div>
         <div class="lbl">GPA</div>
       </div>
       <div class="about-highlight">
-        <div class="icon">📍</div>
+        <i class="icon" data-lucide="map-pin"></i>
         <div class="val">Depok</div>
         <div class="lbl">Indonesia</div>
       </div>
       <div class="about-highlight">
-        <div class="icon">🏆</div>
+        <i class="icon" data-lucide="trophy"></i>
         <div class="val">Best Student</div>
         <div class="lbl">2017</div>
       </div>
@@ -757,24 +623,24 @@
     <p>Technologies I use to bring ideas to life.</p>
   </div>
   <div class="skills-grid">
-    <div class="skill-chip reveal"><span class="icon">⚛</span>React</div>
-    <div class="skill-chip reveal"><span class="icon">🟢</span>Vue.js</div>
-    <div class="skill-chip reveal"><span class="icon">🔷</span>TypeScript</div>
-    <div class="skill-chip reveal"><span class="icon">🟨</span>JavaScript</div>
-    <div class="skill-chip reveal"><span class="icon">☕</span>Java</div>
-    <div class="skill-chip reveal"><span class="icon">🍃</span>Spring Boot</div>
-    <div class="skill-chip reveal"><span class="icon">🟩</span>Node.js</div>
-    <div class="skill-chip reveal"><span class="icon">🧩</span>NestJS</div>
-    <div class="skill-chip reveal"><span class="icon">🐘</span>PHP</div>
-    <div class="skill-chip reveal"><span class="icon">🎯</span>Laravel</div>
-    <div class="skill-chip reveal"><span class="icon">🗄</span>MySQL</div>
-    <div class="skill-chip reveal"><span class="icon">🐘</span>PostgreSQL</div>
-    <div class="skill-chip reveal"><span class="icon">🍃</span>MongoDB</div>
-    <div class="skill-chip reveal"><span class="icon">⚡</span>Redis</div>
-    <div class="skill-chip reveal"><span class="icon">🐳</span>Docker</div>
-    <div class="skill-chip reveal"><span class="icon">🔄</span>Jenkins</div>
-    <div class="skill-chip reveal"><span class="icon">☁</span>AWS</div>
-    <div class="skill-chip reveal"><span class="icon">☁</span>GCP</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="code-2"></i>React</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="eye"></i>Vue.js</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="file-code"></i>TypeScript</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="file-json"></i>JavaScript</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="coffee"></i>Java</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="leaf"></i>Spring Boot</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="server"></i>Node.js</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="layers"></i>NestJS</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="file-type"></i>PHP</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="crosshair"></i>Laravel</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="database"></i>MySQL</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="database"></i>PostgreSQL</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="database"></i>MongoDB</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="zap"></i>Redis</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="container"></i>Docker</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="refresh-cw"></i>Jenkins</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="cloud"></i>AWS</div>
+    <div class="skill-chip reveal"><i class="icon" data-lucide="cloud"></i>GCP</div>
   </div>
 </section>
 
@@ -785,42 +651,42 @@
   </div>
   <div class="techstack-grid">
     <div class="techstack-card reveal">
-      <span class="icon">🎨</span>
+      <i class="icon" data-lucide="palette"></i>
       <h3>Frontend</h3>
       <div class="tags">
         <span>React</span><span>Vue.js</span><span>TypeScript</span><span>JavaScript</span><span>HTML/CSS</span><span>Bootstrap</span><span>jQuery</span><span>Ajax</span>
       </div>
     </div>
     <div class="techstack-card reveal">
-      <span class="icon">⚙️</span>
+      <i class="icon" data-lucide="cog"></i>
       <h3>Backend</h3>
       <div class="tags">
         <span>Java Spring Boot</span><span>Node.js</span><span>NestJS</span><span>PHP</span><span>Laravel</span><span>CodeIgniter</span><span>Kotlin</span>
       </div>
     </div>
     <div class="techstack-card reveal">
-      <span class="icon">🗄️</span>
+      <i class="icon" data-lucide="database"></i>
       <h3>Database</h3>
       <div class="tags">
         <span>MySQL</span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Firebase</span>
       </div>
     </div>
     <div class="techstack-card reveal">
-      <span class="icon">🛠️</span>
+      <i class="icon" data-lucide="wrench"></i>
       <h3>DevOps & Tools</h3>
       <div class="tags">
         <span>Git</span><span>Docker</span><span>Jenkins</span><span>CI/CD</span><span>AWS</span><span>Google Cloud</span>
       </div>
     </div>
     <div class="techstack-card reveal">
-      <span class="icon">🔌</span>
+      <i class="icon" data-lucide="plug"></i>
       <h3>API & Integration</h3>
       <div class="tags">
         <span>RESTful API</span><span>Third Party APIs</span><span>Microservices</span><span>API Optimization</span>
       </div>
     </div>
     <div class="techstack-card reveal">
-      <span class="icon">📋</span>
+      <i class="icon" data-lucide="clipboard-list"></i>
       <h3>Methodologies</h3>
       <div class="tags">
         <span>Agile</span><span>Automation Testing</span><span>System Design</span><span>Team Leadership</span>
@@ -856,6 +722,8 @@
 <footer>© 2025 Akbar Abustang, S.Kom. All rights reserved.</footer>
 
 <script>
+  lucide.createIcons();
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
